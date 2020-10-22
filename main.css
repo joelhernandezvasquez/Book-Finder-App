@@ -123,6 +123,10 @@ body {
   position: relative;
 }
 
+.search-result .inner-result a {
+  text-decoration: none;
+}
+
 .search-result .inner-result .book-card {
   display: -ms-grid;
   display: grid;

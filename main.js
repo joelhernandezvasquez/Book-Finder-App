@@ -23,28 +23,42 @@ const searchBook = () =>
       .then((response)=> response.json())
       .then((data)=>{
         
-         const books = data.items;
+        
+        const books = data.items;
          
          books.forEach(book => {
             
-            const bookCard = document.createElement("div");
-            bookCard.classList.add("book-card");
+           const link = document.createElement("a");
+           const bookCard = document.createElement("div");
+
+           link.href = book.volumeInfo.infoLink;
+           link.target = "_blank";
+           bookCard.classList.add("book-card");
   
-            bookCard.innerHTML = `<div class="book-img">
+           bookCard.innerHTML = `
+                                  <div class="book-img">
                                     <img src="${book.volumeInfo.imageLinks.smallThumbnail}"/>
                                   </div> 
                                    <div class="book-details">
                                      <h1> ${book.volumeInfo.title}</h1>
                                      <p> BY ${book.volumeInfo.authors} </p>
                                      <p> Published ${book.volumeInfo.publishedDate} </p>
-                                   </div>`
-            searchResultContainer.appendChild(bookCard);
+                                   </div>
+                                   `
+            link.appendChild(bookCard);
+            searchResultContainer.appendChild(link);
                                   
          });
   
      }) 
     
-     .catch((error)=> console.log(error))
+        .catch((error) => {
+        
+          const errorMessage = document.createElement("div");
+
+          errorMessage.innerHTML = `<p> Data was not found</p>`
+          searchResultContainer.appendChild(errorMessage);
+        })
      loader.classList.remove("active"); 
     
 
