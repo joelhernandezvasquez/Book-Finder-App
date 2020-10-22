@@ -8,6 +8,31 @@ body {
 	font-family: "Open Sans", sans-serif;
 }
 
+.loader{
+	
+	display:none;
+	position: absolute;
+	width:100px;
+	height:100px;
+	border-radius: 50%;
+	top:30px;
+	left:100px;
+	z-index: 1;
+	border: 16px solid #f3f3f3;
+	border-top: 16px solid #3498db;
+	animation: spin 1.5s linear infinite;	
+	//opacity:0;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .active.loader{
+	  display: block;
+  }
+
 .container {
 	max-width: 50%;
 	margin: 6rem auto;
@@ -72,8 +97,11 @@ body {
 .search-result {
 	width: 800px;
 	margin-top: 2rem;
-
+	position: relative;
 	.inner-result {
+		
+		
+		
 		.book-card {
 			display: grid;
 			grid-template-columns: 200px 1fr;
